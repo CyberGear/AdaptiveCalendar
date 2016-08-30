@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">RxKotlin</string>
+    <string name="continent">Continent</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+
+    <array name="weekDays">
+        <item>Sek</item>
+        <item>Pir</item>
+        <item>Ant</item>
+        <item>Tre</item>
+        <item>Ket</item>
+        <item>Pen</item>
+        <item>Šeš</item>
+    </array>
+
+    <array name="months">
+        <item>Sausis</item>
+        <item>Vasaris</item>
+        <item>Kovas</item>
+        <item>Balandis</item>
+        <item>Gegužė</item>
+        <item>Birželis</item>
+        <item>Liepa</item>
+        <item>Rugpjūtis</item>
+        <item>Rugsėjis</item>
+        <item>Spalis</item>
+        <item>Lapkritis</item>
+        <item>Gruodis</item>
+    </array>
+
+</resources>
