@@ -35,11 +35,13 @@ class MonthView(context: Context,
     }
 
     fun loadBasicCells(adapter: CalendarAdapter) {
-        if (calendarView.showMonth) {
+        if (calendarView.showMonthTitle) {
             addView(0, -1, adapter.getMonthLabelView(dateTime))
         }
-        for (weekDay in 0..columnCount) {
-            addView(1, weekDay, adapter.getWeekDayLabelView(weekDay))
+        if (calendarView.showDayTitles) {
+            for (weekDay in 0..columnCount) {
+                addView(1, weekDay, adapter.getWeekDayLabelView(weekDay))
+            }
         }
         val startFrom = dateTime.minusDays(dateTime.dayOfWeek)
         for (line in 2..linesCount) {
@@ -91,11 +93,14 @@ class MonthView(context: Context,
 
         val nextView = getViewsFrom(0)
 
-        if (calendarView.showMonth) {
+        if (calendarView.showMonthTitle) {
             adapter.updateMonthView(nextView(), dateTime)
         }
-        for (weekDay in 0..columnCount) {
-            adapter.updateWeekDayView(nextView(), weekDay)
+
+        if (calendarView.showDayTitles) {
+            for (weekDay in 0..columnCount) {
+                adapter.updateWeekDayView(nextView(), weekDay)
+            }
         }
         val startFrom = dateTime.minusDays(dateTime.dayOfWeek)
         for (line in 2..linesCount) {

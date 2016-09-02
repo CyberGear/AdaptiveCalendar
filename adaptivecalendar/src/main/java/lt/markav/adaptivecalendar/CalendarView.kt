@@ -12,7 +12,8 @@ class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(context, 
     constructor(context: Context) : this(context, null)
 
     var calendarAdapter: CalendarAdapter? = null
-    var showMonth: Boolean = true
+    var showMonthTitle: Boolean = true
+    var showDayTitles: Boolean = true
     var onMonthSelectListener: ((dateTime: DateTime) -> Unit)? = null
     var onDayClickListener: ((dateTime: DateTime) -> Unit)? = null
     var onPageScrollStateChangListener: ((state: Int) -> Unit)? = null
@@ -23,7 +24,8 @@ class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(context, 
 
     init {
         val arr = context.obtainStyledAttributes(attrs, R.styleable.CalendarView, 0, 0)
-        showMonth = arr.getBoolean(R.styleable.CalendarView_cv_showMonthTitle, true)
+        showMonthTitle = arr.getBoolean(R.styleable.CalendarView_cv_showMonthTitle, true)
+        showDayTitles = arr.getBoolean(R.styleable.CalendarView_cv_showDayTitles, true)
         arr.recycle()
 
         layoutParams = LayoutParams()
@@ -62,7 +64,7 @@ class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(context, 
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val rows = if (showMonth) 8 else 7
+        val rows = 6 + (if (showMonthTitle) 1 else 0) + (if (showDayTitles) 1 else 0)
         setMeasuredDimension(measuredWidth, measuredWidth * rows / 7)
     }
 

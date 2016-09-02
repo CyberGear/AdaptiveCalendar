@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="CalendarView">
         <attr name="cv_showMonthTitle" format="boolean" />
+        <attr name="cv_showDayTitles" format="boolean" />
     </declare-styleable>
 </resources>
