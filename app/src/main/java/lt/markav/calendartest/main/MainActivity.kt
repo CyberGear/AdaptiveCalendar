@@ -29,7 +29,7 @@ class CA() : CalendarAdapter() {
 
     init {
         monthFormat = DateTimeFormat.forPattern("MMMM")
-        locale = Locale("LT")
+        locale = Locale("lv")
     }
 
 }

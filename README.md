@@ -1,5 +1,13 @@
 # AdaptiveCalendar
 
+*Version:* ***0.1.2***
+
+ - ability to set locale throw attributes
+
+*Version:* ***0.1.1***
+
+ - ability to hide weekdays labels
+
 *Version:* ***0.1.0***
 
  - initial release, recommended to use only text views as fields, for initial purpose is good enough
@@ -18,6 +26,6 @@
 ```Groovy
     dependencies {
         ...
-        compile 'lt.markav:adaptivecalendar:0.1.0'
+        compile 'lt.markav:adaptivecalendar:0.1.2'
     }
 ```

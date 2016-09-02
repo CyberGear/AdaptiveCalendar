@@ -19,7 +19,12 @@ open class CalendarAdapter {
 
     var weekdayFormat: DateTimeFormatter = DateTimeFormat.forPattern("EEE")
     var monthFormat: DateTimeFormatter = DateTimeFormat.forPattern("MMMM")
+    var isLocaleChanged = false
     var locale: Locale = Locale.getDefault()
+        set(value) {
+            isLocaleChanged = true
+            field = value
+        }
 
     open fun loadDataForMonth(month: DateTime): Unit {
         monthLoaded(month)
