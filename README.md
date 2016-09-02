@@ -1,6 +1,6 @@
 # AdaptiveCalendar
 
-*Version:* ***0.1.0***
+*Version:* ***0.1.1***
 
  - initial release, recommended to use only text views as fields, for initial purpose is good enough
 
@@ -18,6 +18,6 @@
 ```Groovy
     dependencies {
         ...
-        compile 'lt.markav:adaptivecalendar:0.1.0'
+        compile 'lt.markav:adaptivecalendar:0.1.1'
     }
 ```
