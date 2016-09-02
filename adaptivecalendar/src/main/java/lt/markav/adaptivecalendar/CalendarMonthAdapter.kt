@@ -2,13 +2,14 @@ package lt.markav.adaptivecalendar
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import org.joda.time.DateTime
 import java.util.*
 
-class CalendarMonthAdapter(val context: Context, val adapter: CalendarAdapter) : PagerAdapter() {
+class CalendarMonthAdapter(val context: Context,
+                           val adapter: CalendarAdapter,
+                           val calendarView: CalendarView) : PagerAdapter() {
 
     val totalPages = 240
     val middlePage = totalPages / 2
@@ -29,15 +30,13 @@ class CalendarMonthAdapter(val context: Context, val adapter: CalendarAdapter) :
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val dateTime = getShiftedDate(position)
         val month = Month(dateTime)
-        val view = MonthView(context, dateTime)
+        val view = MonthView(context, dateTime, calendarView)
         container.addView(view)
 
         monthPages.put(month, view)
 
         view.loadBasicCells(adapter)
         adapter.loadDataForMonth(dateTime)
-
-        Log.e("TAGGAS", monthPages.map { it.value }.toString())
         return view
     }
 
@@ -47,7 +46,7 @@ class CalendarMonthAdapter(val context: Context, val adapter: CalendarAdapter) :
     }
 
     fun monthLoaded(month: DateTime) {
-        monthPages.get(Month(month))?.loadCells(adapter)
+        monthPages[Month(month)]?.updateCells(adapter)
     }
 
     fun getShiftedDate(position: Int): DateTime {
@@ -64,8 +63,8 @@ class CalendarMonthAdapter(val context: Context, val adapter: CalendarAdapter) :
         return adapter.monthLabel(getShiftedDate(position))
     }
 
-}
+    data class Month(val year: Int, val month: Int) {
+        constructor(dateTime: DateTime) : this(dateTime.year, dateTime.monthOfYear)
+    }
 
-data class Month(val year: Int, val month: Int) {
-    constructor(dateTime: DateTime) : this(dateTime.year, dateTime.monthOfYear)
 }

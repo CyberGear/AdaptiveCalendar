@@ -1,5 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'lt.markav'
+version = '0.1.0'
+Integer vCode = 1
 
 android {
     compileSdkVersion 24
@@ -8,8 +13,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode(vCode)
+        versionName(version)
     }
     buildTypes {
         release {
@@ -22,6 +27,15 @@ android {
     }
 }
 
+//noinspection GroovyMissingReturnStatement
+install {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://${projectDir}/../repo")
+        }
+    }
+}
+
 dependencies {
     testCompile 'junit:junit:4.12'
 
@@ -30,6 +44,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
 repositories {
     mavenCentral()
 }

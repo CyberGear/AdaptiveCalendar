@@ -6,26 +6,23 @@ import android.view.View
 import android.widget.TextView
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 import java.util.*
 
 open class CalendarAdapter {
 
     lateinit var monthAdapter: CalendarMonthAdapter
-    val monday by lazy {
+    val monday: DateTime by lazy {
         val now = DateTime.now()
         now.minusDays(now.dayOfWeek - 1)
     }
 
-    var weekdayFormat = DateTimeFormat.forPattern("EEE")
-    var monthFormat = DateTimeFormat.forPattern("MMMM")
-    var locale = Locale.getDefault()
+    var weekdayFormat: DateTimeFormatter = DateTimeFormat.forPattern("EEE")
+    var monthFormat: DateTimeFormatter = DateTimeFormat.forPattern("MMMM")
+    var locale: Locale = Locale.getDefault()
 
-    fun loadDataForMonth(month: DateTime): Unit {
+    open fun loadDataForMonth(month: DateTime): Unit {
         monthLoaded(month)
-    }
-
-    fun monthLoaded(month: DateTime) {
-        monthAdapter.monthLoaded(month)
     }
 
     open fun getMonthLabelView(dateTime: DateTime): View {
@@ -47,6 +44,19 @@ open class CalendarAdapter {
             if (!isThisMonth) it.setTextColor(0x00FFFFFF.toInt())
         }
         return textView
+    }
+
+    fun monthLoaded(month: DateTime) {
+        monthAdapter.monthLoaded(month)
+    }
+
+    open fun updateMonthView(view: View, month: DateTime) {
+    }
+
+    open fun updateWeekDayView(view: View, weekDay: Int) {
+    }
+
+    open fun updateDayView(view: View, date: DateTime, thisMonth: Boolean) {
     }
 
     inline private fun createTextView(style: Int, text: String, f: (tv: TextView) -> Unit): TextView {
