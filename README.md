@@ -1,5 +1,9 @@
 # AdaptiveCalendar
 
+*Version:* ***0.1.3***
+
+ - added functionality for getting and selecting current month
+
 *Version:* ***0.1.2***
 
  - ability to set locale throw attributes
@@ -26,6 +30,6 @@
 ```Groovy
     dependencies {
         ...
-        compile 'lt.markav:adaptivecalendar:0.1.2'
+        compile 'lt.markav:adaptivecalendar:0.1.3'
     }
 ```
