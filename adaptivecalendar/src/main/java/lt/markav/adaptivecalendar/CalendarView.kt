@@ -28,6 +28,14 @@ class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(context, 
     var onPageScrollListener: ((position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit)? = null
     var onPageSelectListener: ((position: Int) -> Unit)? = null
 
+    fun getCurrentMonth(): DateTime = getMonthAdapter().getShiftedDate(currentItem)
+
+    fun setCurrentMonth(dateTime: DateTime) = setCurrentMonth(dateTime, true)
+
+    fun setCurrentMonth(dateTime: DateTime, animate: Boolean) {
+        setCurrentItem(getMonthAdapter().getShift(dateTime), animate)
+    }
+
     private fun getMonthAdapter() = adapter as CalendarMonthAdapter
 
     init {

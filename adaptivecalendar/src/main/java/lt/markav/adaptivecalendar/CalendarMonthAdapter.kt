@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import org.joda.time.DateTime
+import org.joda.time.Months
 import java.util.*
 
 class CalendarMonthAdapter(val context: Context,
@@ -13,7 +14,7 @@ class CalendarMonthAdapter(val context: Context,
 
     val totalPages = 240
     val middlePage = totalPages / 2
-    val initialDate: DateTime = firstDayOfThisMonth()
+    val initialDate: DateTime = DateTime.now().firstOfMonth()
 
     val monthPages: MutableMap<Month, MonthView> = HashMap()
 
@@ -54,9 +55,10 @@ class CalendarMonthAdapter(val context: Context,
         return initialDate.plusMonths(offset)
     }
 
-    private fun firstDayOfThisMonth(): DateTime {
-        val now = DateTime.now()
-        return DateTime(now.year, now.monthOfYear, 1, 0, 0, 0)
+    fun getShift(dateTime: DateTime): Int {
+        val firstOfMonth = dateTime.firstOfMonth()
+        val monthsBetween = Months.monthsBetween(initialDate, firstOfMonth).months
+        return middlePage + monthsBetween
     }
 
     override fun getPageTitle(position: Int): CharSequence {
@@ -66,5 +68,7 @@ class CalendarMonthAdapter(val context: Context,
     data class Month(val year: Int, val month: Int) {
         constructor(dateTime: DateTime) : this(dateTime.year, dateTime.monthOfYear)
     }
+
+    fun DateTime.firstOfMonth(): DateTime = DateTime(this.year, this.monthOfYear, 1, 0, 0, 0)
 
 }
