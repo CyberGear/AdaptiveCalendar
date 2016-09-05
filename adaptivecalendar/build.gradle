@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'lt.markav'
-version = '0.1.2'
+version = 'DEMO'
 Integer vCode = 1
 
 android {
@@ -35,6 +35,12 @@ install {
         }
     }
 }
+
+task deploy << {
+    ['sh', '-c', "git add ${projectDir}/../repo/."].execute().text.trim()
+}
+
+deploy.dependsOn install
 
 dependencies {
     testCompile 'junit:junit:4.12'
