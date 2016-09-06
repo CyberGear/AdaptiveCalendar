@@ -12,7 +12,7 @@ class CalendarMonthAdapter(val context: Context,
                            val adapter: CalendarAdapter,
                            val calendarView: CalendarView) : PagerAdapter() {
 
-    val totalPages = 240
+    val totalPages = 1001
     val middlePage = totalPages / 2
     val initialDate: DateTime = DateTime.now().firstOfMonth()
 

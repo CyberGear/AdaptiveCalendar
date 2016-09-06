@@ -11,15 +11,14 @@ import java.util.*
 
 open class CalendarAdapter {
 
-    lateinit var monthAdapter: CalendarMonthAdapter
-    val monday: DateTime by lazy {
+    private val monday: DateTime by lazy {
         val now = DateTime.now()
         now.minusDays(now.dayOfWeek - 1)
     }
-
+    lateinit var monthAdapter: CalendarMonthAdapter
+    var isLocaleChanged = false
     var weekdayFormat: DateTimeFormatter = DateTimeFormat.forPattern("EEE")
     var monthFormat: DateTimeFormatter = DateTimeFormat.forPattern("MMMM")
-    var isLocaleChanged = false
     var locale: Locale = Locale.getDefault()
         set(value) {
             isLocaleChanged = true
@@ -31,24 +30,26 @@ open class CalendarAdapter {
     }
 
     open fun getMonthLabelView(dateTime: DateTime): View {
-        val textView = createTextView(Typeface.BOLD, monthLabel(dateTime)) {
+        return createTextView(Typeface.BOLD, monthLabel(dateTime)) {
             it.setTextAppearance(monthAdapter.context, R.style.TextAppearance_AppCompat_Subhead)
         }
-        return textView
     }
 
     open fun getWeekDayLabelView(weekDay: Int): View {
-        val textView = createTextView(Typeface.BOLD, weekdayLabel(weekDay)) {
+        return createTextView(Typeface.BOLD, weekdayLabel(weekDay)) {
             it.setTextAppearance(monthAdapter.context, R.style.TextAppearance_AppCompat_Body1)
         }
-        return textView
     }
 
     open fun getViewForDate(dateTime: DateTime, isThisMonth: Boolean): View {
-        val textView = createTextView(Typeface.NORMAL, dateTime.toString("d")) {
-            if (!isThisMonth) it.setTextColor(0x00FFFFFF.toInt())
+        return createTextView(Typeface.NORMAL, dateTime.toString("d")) {
+            if (isThisMonth) {
+                it.isClickable = true
+                it.setBackgroundResource(R.drawable.round_bg)
+                it.setTextColor(it.resources.getColorStateList(R.color.text_color))
+            }
+            it.visibility = if (isThisMonth) View.VISIBLE else View.INVISIBLE
         }
-        return textView
     }
 
     fun monthLoaded(month: DateTime) {

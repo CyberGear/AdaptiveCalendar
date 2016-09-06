@@ -3,10 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "lt.markav.rxkotlin"
+        applicationId "lt.markav.calendartest"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
@@ -42,9 +42,9 @@ dependencies {
     // https://github.com/pnikosis/materialish-progress
     compile 'com.github.dmytrodanylyk.android-process-button:library:1.0.4'
     compile 'me.nlmartian.silkcal:library:0.1.1'
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.support:design:24.1.1'
-    compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
+    compile 'com.android.support:recyclerview-v7:24.2.0'
     // Kotlin and anko
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile "org.jetbrains.anko:anko-sdk15:$anko_version"

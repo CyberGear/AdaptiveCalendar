@@ -8,7 +8,7 @@ import android.view.Gravity
 import org.joda.time.DateTime
 import java.util.*
 
-class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
+open class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
 
     constructor(context: Context) : this(context, null)
 
