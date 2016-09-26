@@ -5,6 +5,7 @@ import android.support.v4.view.PagerTabStrip
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.View
 import org.joda.time.DateTime
 import java.util.*
 
@@ -23,7 +24,7 @@ open class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(cont
         }
 
     var onMonthSelectListener: ((dateTime: DateTime) -> Unit)? = null
-    var onDayClickListener: ((dateTime: DateTime) -> Unit)? = null
+    var onDayClickListener: ((view:View, dateTime: DateTime) -> Unit)? = null
     var onPageScrollStateChangListener: ((state: Int) -> Unit)? = null
     var onPageScrollListener: ((position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit)? = null
     var onPageSelectListener: ((position: Int) -> Unit)? = null
@@ -95,7 +96,7 @@ open class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(cont
     }
 
     @Suppress("unused")
-    fun onDayClicked(function: (dateTime: DateTime) -> Unit) {
+    fun onDayClicked(function: (view:View, dateTime: DateTime) -> Unit) {
         onDayClickListener = function
     }
 

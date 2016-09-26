@@ -29,7 +29,7 @@ class CalendarMonthAdapterTest {
     }
 
     @Test
-    fun monthSouldBeEqualByBothConstructors() {
+    fun monthShouldBeEqualByBothConstructors() {
         val first = CalendarMonthAdapter.Month(2016, 8)
         val second = CalendarMonthAdapter.Month(DateTime(2016, 8, 1, 0, 0, 0))
         assertEquals(first, second)

@@ -49,7 +49,7 @@ class MonthView(context: Context,
                 val daysFromStart = column + 1 + ((line - 2) * 7)
                 val date = startFrom.plusDays(daysFromStart)
                 val view = addView(line, column, adapter.getViewForDate(date, isThisMonth(date)))
-                view.setOnClickListener { calendarView.onDayClickListener?.invoke(date) }
+                view.setOnClickListener { calendarView.onDayClickListener?.invoke(it, date) }
             }
         }
         prepareProgressBar(context)
