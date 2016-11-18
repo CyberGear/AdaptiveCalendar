@@ -35,6 +35,6 @@
 ```Groovy
     dependencies {
         ...
-        compile 'lt.markav:adaptivecalendar:0.1.3'
+        compile 'lt.markav:adaptivecalendar:0.1.4'
     }
 ```
