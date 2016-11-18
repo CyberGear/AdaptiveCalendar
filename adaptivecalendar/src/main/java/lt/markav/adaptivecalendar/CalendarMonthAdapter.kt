@@ -46,8 +46,8 @@ class CalendarMonthAdapter(val context: Context,
         container.removeView(any as View)
     }
 
-    fun monthLoaded(month: DateTime) {
-        monthPages[Month(month)]?.updateCells(adapter)
+    fun monthLoaded(month: DateTime, data: Any?) {
+        monthPages[Month(month)]?.updateCells(adapter, data)
     }
 
     fun getShiftedDate(position: Int): DateTime {

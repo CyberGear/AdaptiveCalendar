@@ -88,18 +88,18 @@ class MonthView(context: Context,
         addView(progressBar)
     }
 
-    fun updateCells(adapter: CalendarAdapter) {
+    fun updateCells(adapter: CalendarAdapter, data: Any?) {
         removeView(progressBar)
 
         val nextView = getViewsFrom(0)
 
         if (calendarView.showMonthTitle) {
-            adapter.updateMonthView(nextView(), dateTime)
+            adapter.updateMonthView(nextView(), dateTime, data)
         }
 
         if (calendarView.showDayTitles) {
             for (weekDay in 0..columnCount) {
-                adapter.updateWeekDayView(nextView(), weekDay)
+                adapter.updateWeekDayView(nextView(), weekDay, data)
             }
         }
         val startFrom = dateTime.minusDays(dateTime.dayOfWeek)
@@ -107,7 +107,7 @@ class MonthView(context: Context,
             for (column in 0..columnCount) {
                 val daysFromStart = column + 1 + ((line - 2) * 7)
                 val date = startFrom.plusDays(daysFromStart)
-                adapter.updateDayView(nextView(), date, isThisMonth(date))
+                adapter.updateDayView(nextView(), date, isThisMonth(date), data)
             }
         }
     }

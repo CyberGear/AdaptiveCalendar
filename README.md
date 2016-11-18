@@ -1,5 +1,10 @@
 # AdaptiveCalendar
 
+*Version:* ***0.1.4***
+
+ - setting data directly to adapter for later usage
+ - added reference of clicked view to listener
+
 *Version:* ***0.1.3***
 
  - added functionality for getting and selecting current month

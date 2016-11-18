@@ -26,7 +26,7 @@ open class CalendarAdapter {
         }
 
     open fun loadDataForMonth(month: DateTime): Unit {
-        monthLoaded(month)
+        dataLoadedForMonth(month, null)
     }
 
     open fun getMonthLabelView(dateTime: DateTime): View {
@@ -52,17 +52,17 @@ open class CalendarAdapter {
         }
     }
 
-    fun monthLoaded(month: DateTime) {
-        monthAdapter.monthLoaded(month)
+    fun dataLoadedForMonth(month: DateTime, data: Any?) {
+        monthAdapter.monthLoaded(month, data)
     }
 
-    open fun updateMonthView(view: View, month: DateTime) {
+    open fun updateMonthView(view: View, month: DateTime, data: Any?) {
     }
 
-    open fun updateWeekDayView(view: View, weekDay: Int) {
+    open fun updateWeekDayView(view: View, weekDay: Int, data: Any?) {
     }
 
-    open fun updateDayView(view: View, date: DateTime, thisMonth: Boolean) {
+    open fun updateDayView(view: View, date: DateTime, thisMonth: Boolean, data: Any?) {
     }
 
     inline private fun createTextView(style: Int, text: String, f: (tv: TextView) -> Unit): TextView {
