@@ -1,6 +1,7 @@
 package lt.markav.adaptivecalendar
 
 import android.content.Context
+import android.support.v4.view.PagerAdapter
 import android.support.v4.view.PagerTabStrip
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
@@ -117,7 +118,12 @@ open class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(cont
 
     @Suppress("unused")
     fun refresh() {
-        (adapter as CalendarMonthAdapter).refresh()
+        if (adapter != null) {
+            if (!(adapter is CalendarMonthAdapter)) {
+                throw RuntimeException("only can refresh CalendarMonthAdapter")
+            }
+            (adapter as CalendarMonthAdapter).refresh()
+        }
     }
 
 }

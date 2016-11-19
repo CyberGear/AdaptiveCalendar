@@ -1,5 +1,11 @@
 # AdaptiveCalendar
 
+*Version:* ***1.0.0***
+
+ - added first and last month feature to set beginning, end or range of calendar
+ - also you can change initial month, witch by default is this one
+ - fixed refresh functionality bug 
+
 *Version:* ***0.1.5***
 
  - added refresh months functionality

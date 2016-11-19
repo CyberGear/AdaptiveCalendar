@@ -12,14 +12,34 @@ class CalendarMonthAdapter(val context: Context,
                            val adapter: CalendarAdapter,
                            val calendarView: CalendarView) : PagerAdapter() {
 
-    val totalPages = 1001
-    val middlePage = totalPages / 2
-    val initialDate: DateTime = DateTime.now().firstOfMonth()
+    val totalPages: Int
+    val middlePage: Int
+    val initialDate: DateTime
 
     val monthPages: MutableMap<Month, MonthView> = HashMap()
 
     init {
+        val firstMonth = adapter.getFirstMonth().firstOfMonth()
+        val lastMonth = adapter.getLastMonth().firstOfMonth().plusMonths(1)
+
+        initialDate = adapter.getInitialMonth().firstOfMonth()
+        totalPages = Months.monthsBetween(firstMonth, lastMonth).months
+        middlePage = calcMiddlePage(firstMonth, lastMonth)
+
         adapter.monthAdapter = this
+    }
+
+    private fun calcMiddlePage(firstMonth: DateTime, lastMonth: DateTime): Int {
+        val monthsToFirst = Months.monthsBetween(firstMonth, initialDate).months
+        val monthsToLast = Months.monthsBetween(initialDate, lastMonth).months
+
+        if (monthsToFirst > totalPages || monthsToLast > totalPages) {
+            throw CalendarException("Initial Month [${initialDate.printMonth()}] " +
+                    "is not in declared range " +
+                    "[${firstMonth.printMonth()} - ${lastMonth.printMonth()}]")
+        }
+
+        return totalPages - monthsToLast
     }
 
     override fun isViewFromObject(view: View?, any: Any?): Boolean {
@@ -74,7 +94,5 @@ class CalendarMonthAdapter(val context: Context,
 
         fun toDateTime() = DateTime(year, month, 1, 0, 0)
     }
-
-    fun DateTime.firstOfMonth(): DateTime = DateTime(this.year, this.monthOfYear, 1, 0, 0, 0)
 
 }

@@ -55,9 +55,7 @@ class CA() : CalendarAdapter() {
     }
 
     override fun updateDayView(view: View, date: DateTime, thisMonth: Boolean, data: Any?) {
-        if (data != null) {
-            (view as TextView).textColor = 0xFF0066FF.toInt()
-        }
+        data?.let { (view as TextView).textColor = 0xFF0066FF.toInt() }
     }
 
 }

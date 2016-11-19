@@ -25,6 +25,18 @@ open class CalendarAdapter {
             field = value
         }
 
+    open fun getLastMonth(): DateTime {
+        return getInitialMonth().firstOfMonth().plusMonths(500)
+    }
+
+    open fun getFirstMonth(): DateTime {
+        return getInitialMonth().firstOfMonth().minusMonths(500)
+    }
+
+    open fun getInitialMonth(): DateTime {
+        return DateTime.now().firstOfMonth()
+    }
+
     open fun loadDataForMonth(month: DateTime): Unit {
         dataLoadedForMonth(month, null)
     }
@@ -74,16 +86,16 @@ open class CalendarAdapter {
         return textView
     }
 
-    fun String.camel(): String {
-        return this[0].toUpperCase() + this.substring(1)
-    }
-
     fun weekdayLabel(weekDay: Int): String {
         return weekdayFormat.withLocale(locale).print(monday.plusDays(weekDay)).camel()
     }
 
     fun monthLabel(date: DateTime): String {
         return monthFormat.withLocale(locale).print(date).camel()
+    }
+
+    private fun String.camel(): String {
+        return this[0].toUpperCase() + this.substring(1)
     }
 
 }
