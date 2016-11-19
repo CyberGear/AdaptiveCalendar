@@ -1,5 +1,9 @@
 # AdaptiveCalendar
 
+*Version:* ***0.1.5***
+
+ - added refresh months functionality
+
 *Version:* ***0.1.4***
 
  - setting data directly to adapter for later usage
@@ -35,6 +39,6 @@
 ```Groovy
     dependencies {
         ...
-        compile 'lt.markav:adaptivecalendar:0.1.4'
+        compile 'lt.markav:adaptivecalendar:{version}'
     }
 ```

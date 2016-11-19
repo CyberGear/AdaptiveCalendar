@@ -41,6 +41,10 @@ class CalendarMonthAdapter(val context: Context,
         return view
     }
 
+    fun refresh() {
+        monthPages.keys.forEach { adapter.loadDataForMonth(it.toDateTime()) }
+    }
+
     override fun destroyItem(container: ViewGroup, position: Int, any: Any) {
         monthPages.remove(Month(getShiftedDate(position)))
         container.removeView(any as View)
@@ -67,6 +71,8 @@ class CalendarMonthAdapter(val context: Context,
 
     data class Month(val year: Int, val month: Int) {
         constructor(dateTime: DateTime) : this(dateTime.year, dateTime.monthOfYear)
+
+        fun toDateTime() = DateTime(year, month, 1, 0, 0)
     }
 
     fun DateTime.firstOfMonth(): DateTime = DateTime(this.year, this.monthOfYear, 1, 0, 0, 0)

@@ -115,4 +115,9 @@ open class CalendarView(context: Context, attrs: AttributeSet?) : ViewPager(cont
         onPageSelectListener = function
     }
 
+    @Suppress("unused")
+    fun refresh() {
+        (adapter as CalendarMonthAdapter).refresh()
+    }
+
 }

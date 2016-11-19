@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         next.onClick { calendar.setCurrentMonth(calendar.getCurrentMonth().plusMonths(1)) }
 
         toast.onClick { toast(calendar.getCurrentMonth().toString("yyyy-MM")) }
+
+        refresh.onClick { calendar.refresh() }
     }
 
 }
